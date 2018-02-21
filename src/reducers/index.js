@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import ColumnsReducer from './reducer_columns';
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+  columns: ColumnsReducer
 });
 
 export default rootReducer;
