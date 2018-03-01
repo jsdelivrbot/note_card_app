@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Column from './column';
 
 import { createColumn } from '../actions';
@@ -13,9 +14,10 @@ class App extends Component {
   }
 
   handleClick() {
-    // this.props.createColumn();
+    this.props.createColumn();
     if (this.state.lists < 4) {
       console.log('Creating column');
+
       var num = this.state.lists + 1;
       this.setState({ lists: num })
     }
@@ -50,7 +52,11 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  return { columms: state.columns};
+  return { columns: state.columns};
 }
 
-export default connect(mapStateToProps, { createColumn })(App);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ createColumn: createColumn }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
