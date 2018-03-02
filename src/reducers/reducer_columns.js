@@ -1,12 +1,12 @@
 import { CREATE_COLUMN } from '../actions';
 
-const initialState = ['plant trees', 'grass', 'onion log'];
-
-export default function (state = initialState, action) {
-  console.log('TEST BUTTER');
+export default function (state = [], action) {
   switch (action.type) {
     case CREATE_COLUMN:
-    return [ ...state, []];
+      if (state.length < 4) {
+        return [ ...state, []];
+      }
+    return state;
     default:
       return state;
   }

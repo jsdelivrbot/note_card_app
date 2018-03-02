@@ -17,25 +17,28 @@ class App extends Component {
     this.props.createColumn();
     if (this.state.lists < 4) {
       console.log('Creating column');
-
       var num = this.state.lists + 1;
       this.setState({ lists: num })
     }
   }
 
   renderColumns() {
-    console.log('rendering columns');
     var arr = [];
-    for (let i = 0; i < this.state.lists; i++) {
+    if(this.props.columns.length === 0) {
+      return <h4>Add column to start making notes</h4>
+    };
+    for (let i = 0; i < this.props.columns.length; i++) {
       arr.push(i);
     }
-    return _.map(arr, column => {
-      return <Column key={column}/>
+    return this.props.columns.map(column => {
+      console.log('MAPPING');
+      console.log(column);
+      return <Column key={this.props.columns.indexOf(column)} id={this.props.columns.indexOf(column)}/>
     });
   }
 
   render() {
-    console.log('columns: ' + this.props.columns);
+    console.log('columns: ' + this.props.columns.length);
     return (
       <div>
         <button
@@ -44,7 +47,6 @@ class App extends Component {
           className="btn btn-primary">
             Add Column
           </button>
-        {/* <Column /> */}
         {this.renderColumns()}
       </div>
     );
