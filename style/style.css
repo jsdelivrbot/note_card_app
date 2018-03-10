@@ -2,3 +2,23 @@
   display: block;
   margin: 15px;
 }
+
+.note-card {
+  margin-top: 20px;
+  height: 150px;
+  width: 174px;
+  border: 1px solid black;
+  overflow-y: scroll;
+}
+
+.note-card h4 {
+  color: red;
+  text-align: center;
+}
+
+.delete {
+  margin: 5px;
+  height: 20px;
+  float: right;
+  cursor: pointer;
+}

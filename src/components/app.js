@@ -16,7 +16,6 @@ class App extends Component {
   handleClick() {
     this.props.createColumn();
     if (this.state.lists < 4) {
-      console.log('Creating column');
       var num = this.state.lists + 1;
       this.setState({ lists: num })
     }
@@ -31,14 +30,13 @@ class App extends Component {
       arr.push(i);
     }
     return this.props.columns.map(column => {
-      console.log('MAPPING');
-      console.log(column);
-      return <Column key={this.props.columns.indexOf(column)} id={this.props.columns.indexOf(column)}/>
+      return <Column key={this.props.columns.indexOf(column)} columnId={this.props.columns.indexOf(column)}/>
     });
   }
 
   render() {
     console.log('columns: ' + this.props.columns.length);
+    console.log(this.props.cards);
     return (
       <div>
         <button
@@ -54,7 +52,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  return { columns: state.columns};
+  return { columns: state.columns, cards: state.cards };
 }
 
 function mapDispatchToProps(dispatch) {
