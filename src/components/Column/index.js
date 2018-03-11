@@ -1,12 +1,5 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-import { createCard } from '../actions';
-import { deleteCard } from '../actions';
-import Card from './card';
-import { create } from 'domain';
 
 class Column extends Component {
   constructor(props) {
@@ -28,7 +21,7 @@ class Column extends Component {
   }
 
   //This gets called whenever  button gets clicked to add a card
-  handleClick() {
+  createCard() {
     var newCard = {
       column: this.props.columnId,
       title: this.state.title,
@@ -77,19 +70,11 @@ class Column extends Component {
           name="note"
           value={this.state.note}
         />
-        <button onClick={this.handleClick.bind(this)}className="btn btn-primary">Create Card</button>
+        <button onClick={this.createCard.bind(this)}className="btn btn-primary">Create Card</button>
         <div className="input-group">{this.renderCards()}</div>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return { columns: state.columns, cards: state.cards };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ createCard: createCard, deleteCard: deleteCard }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Column);
+export default Column;
