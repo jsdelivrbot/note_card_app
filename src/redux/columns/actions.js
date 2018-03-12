@@ -7,6 +7,6 @@ const createColumn = () => {
   }
 };
 
-export {
+export default {
   createColumn
 };

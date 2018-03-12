@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 import types from './types';
+import cardTypes from '../cards/types';
 
 const initialState = {
   columns: [],
@@ -10,10 +11,17 @@ const initialState = {
 const columns = (state = initialState.columns, action) => {
   switch (action.type) {
     case types.CREATE_COLUMN:
+      if (state.length < 4) {
+        let newState = Array.from(state);
+        newState.push([]);
+        return newState;
+      }
+      return state;
+    case cardTypes.CREATE_CARD:
       let newState = Array.from(state);
       newState[action.payload.column].push(action.payload.id);
       return newState;
-    case 'DELETE_CARD':
+    case cardTypes.DELETE_CARD:
       newState = Array.from(state);
       let col = newState[action.payload.column];
       let index = col.indexOf(action.payload.key);

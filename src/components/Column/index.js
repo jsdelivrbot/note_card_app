@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+import Card from '../../containers/CardContainer';
 
 class Column extends Component {
   constructor(props) {
@@ -32,7 +33,10 @@ class Column extends Component {
   }
 
   renderCards() {
-    var cards = this.props.columns[this.props.columnId]
+    var cards = this.props.columns.columns[this.props.columnId]
+    // console.log(this.props.cards);
+    // console.log('CARDS');
+    // console.log(cards);
     return cards.map(card => {
       return (
               <Card
@@ -41,20 +45,12 @@ class Column extends Component {
                 title={this.props.cards[card].title}
                 note={this.props.cards[card].note}
                 column={this.props.cards[card].column}
-                />
-              // <div
-              //   className="note-card .d-block"
-              //   key={card}
-              // >
-              //   <h4>{this.props.cards[card].title}</h4>
-              //   <p>{this.props.cards[card].note}</p>
-              // </div>
+              />
       )
     });
   }
 
   render() {
-    console.log("id:", this.props.columnId);
     return (
       <div className="column col-md-3" id={this.props.columnId}>
         <h2>Column {this.props.columnId + 1}</h2>

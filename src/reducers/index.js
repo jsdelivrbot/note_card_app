@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import ColumnsReducer from './reducer_columns';
-import CardsReducer from './reducer_cards';
+import ColumnsReducer from '../redux/columns';
+import CardsReducer from '../redux/cards';
 
 const rootReducer = combineReducers({
   columns: ColumnsReducer,

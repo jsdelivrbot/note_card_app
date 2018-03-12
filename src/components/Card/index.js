@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-import { deleteCard } from '../actions';
 
 class Card extends Component {
   constructor(props) {
@@ -11,8 +7,6 @@ class Card extends Component {
   }
 
   deleteCard() {
-    console.log(this.props.cardKey);
-    console.log('butter');
     let data = { key: this.props.cardKey, column: this.props.column }
     this.props.deleteCard(data);
   }
@@ -36,8 +30,4 @@ class Card extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ deleteCard }, dispatch);
-}
-
-export default connect(null, mapDispatchToProps)(Card);
+export default Card;

@@ -7,8 +7,8 @@ export default function (state = initial_columns, action) {
     case CREATE_COLUMN:
       if (state.length < 4) {
         return [ ...state, []];
-      }
-    return state;
+      };
+      return state;
     case CREATE_CARD:
       console.log('column reducer');
       console.log(state);

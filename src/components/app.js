@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Column from './column';
+import Column from '../containers/ColumnContainer';
 
-import { createColumn } from '../actions';
+import { createColumn } from '../redux/columns/operations';
 
 class App extends Component {
   constructor(props) {
@@ -11,9 +11,10 @@ class App extends Component {
     this.state = {
       lists: 1
     }
+    this.createColumn = this.createColumn.bind(this);
   }
 
-  handleClick() {
+  createColumn() {
     this.props.createColumn();
     if (this.state.lists < 4) {
       var num = this.state.lists + 1;
@@ -22,25 +23,30 @@ class App extends Component {
   }
 
   renderColumns() {
-    var arr = [];
-    if(this.props.columns.length === 0) {
+    // console.log('RENDERING COLUMNS');
+    // console.log(this.props.columns);
+    // console.log(this.props.columns.columns);
+    if(this.props.columns.columns.length === 0) {
       return <h4>Add column to start making notes</h4>
     };
-    for (let i = 0; i < this.props.columns.length; i++) {
-      arr.push(i);
-    }
-    return this.props.columns.map(column => {
-      return <Column key={this.props.columns.indexOf(column)} columnId={this.props.columns.indexOf(column)}/>
+    return this.props.columns.columns.map(column => {
+      return (
+        <Column
+          key={this.props.columns.columns.indexOf(column)}
+          columnId={this.props.columns.columns.indexOf(column)}
+        />
+      )
     });
   }
 
   render() {
-    console.log('columns: ' + this.props.columns.length);
-    console.log(this.props.cards);
+    // console.log(this.props.columns);
+    // console.log('columns: ' + this.props.columns.length);
+    // console.log(this.props.cards);
     return (
       <div>
         <button
-          onClick={this.handleClick.bind(this)}
+          onClick={this.createColumn}
           id="add-column-button"
           className="btn btn-primary">
             Add Column
