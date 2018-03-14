@@ -19,7 +19,7 @@ const columns = (state = initialState.columns, action) => {
       return state;
     case cardTypes.CREATE_CARD:
       let newState = Array.from(state);
-      newState[action.payload.column].push(action.payload.id);
+      newState[action.payload.column].push(action.payload.cardId);
       return newState;
     case cardTypes.DELETE_CARD:
       newState = Array.from(state);

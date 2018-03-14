@@ -25,6 +25,7 @@ class Column extends Component {
   createCard() {
     var newCard = {
       column: this.props.columnId,
+      cardId: this.props.cardId,
       title: this.state.title,
       note: this.state.note
     }

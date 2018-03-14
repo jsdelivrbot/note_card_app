@@ -20,6 +20,7 @@ class ColumnContainer extends Component {
         cards={this.props.cards}
         createCard={this.props.createCard}
         deleteCard={this.props.deleteCard}
+        cardId={this.props.cardId}
       />
     );
   }
@@ -28,7 +29,8 @@ class ColumnContainer extends Component {
 function mapStateToProps(state) {
   return {
     columns: state.columns,
-    cards: state.cards
+    cards: state.cards,
+    cardId: state.cardCounter
   };
 }
 
