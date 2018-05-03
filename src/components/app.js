@@ -9,9 +9,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lists: 1
+      lists: 1,
+      selectedCard: null
     }
     this.createColumn = this.createColumn.bind(this);
+    this.editCard = this.editCard.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.saveChanges = this.saveChanges.bind(this);
   }
 
   createColumn() {
@@ -34,15 +38,58 @@ class App extends Component {
         <Column
           key={this.props.columns.columns.indexOf(column)}
           columnId={this.props.columns.columns.indexOf(column)}
+          editCard={this.editCard}
         />
       )
     });
   }
 
+  editCard(id) {
+    console.log('PEaNUT BUTTER JelLY TIME');
+    console.log('id: ' + id);
+    console.log(typeof(id));
+    if (typeof(id) === 'number') {
+      this.setState({ selectedCard: id });
+    }
+    console.log(this.state.selectedCard);
+  }
+
+  closeModal() {
+    console.log('closing');
+    this.setState({ selectedCard: null})
+  }
+
+  saveChanges() {
+    this.closeModal()
+  }
+
   render() {
-    // console.log(this.props.columns);
-    // console.log('columns: ' + this.props.columns.length);
-    // console.log(this.props.cards);
+    let modal = <h1>NOT EDITING</h1>
+    console.log('if statement');
+    console.log('selected card: ' + this.state.selectedCard);
+    console.log(this.state.selectedCard);
+    if (this.state.selectedCard !== null) {
+      modal = (
+        <div className="my-modal">
+          <img
+            className="delete"
+            src="../style/images/delete_icon.png"
+            alt="delete.png"
+            onClick={this.closeModal}
+          />
+          <h1>Modal</h1>
+          <h3>{this.props.cards[this.state.selectedCard].title}</h3>
+          <p>{this.props.cards[this.state.selectedCard].note}</p>
+          <label>Title:</label>
+          <input type="textfield" name="title" value={this.props.cards[this.state.selectedCard].title} />
+          <br />
+          <label>Note:</label>
+          <input type="textfield" name="title" value={this.props.cards[this.state.selectedCard].note} />
+          <br />
+          <button className="btn btn-primary" onClick={this.saveChanges}>Save Changes</button>
+        </div>
+      )
+    }
     return (
       <div>
         <button
@@ -52,6 +99,9 @@ class App extends Component {
             Add Column
           </button>
         {this.renderColumns()}
+        <div>
+          {modal}
+        </div>
       </div>
     );
   }

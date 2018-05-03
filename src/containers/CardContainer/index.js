@@ -20,6 +20,8 @@ class CardContainer extends Component {
   // }
 
   render() {
+    console.log('CARD CONTAINER');
+    console.log(this.props);
     return (
       <Card
         key={this.props.key}
@@ -28,6 +30,7 @@ class CardContainer extends Component {
         note={this.props.note}
         column={this.props.column}
         deleteCard={this.props.deleteCard}
+        editCard={this.props.editCard}
       />
     )
   }

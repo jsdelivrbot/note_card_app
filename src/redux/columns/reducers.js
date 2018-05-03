@@ -4,7 +4,7 @@ import types from './types';
 import cardTypes from '../cards/types';
 
 const initialState = {
-  columns: [],
+  columns: [[0]],
   length: 0
 };
 

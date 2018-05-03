@@ -2,7 +2,14 @@ import { combineReducers } from 'redux';
 
 import types from './types';
 
-const initialState = {};
+const initialState = {
+  0: {
+    column: 0,
+    cardId: 0,
+    title: "Butter",
+    note: "Butter"
+  }
+};
 
 export default function(state = initialState, action) {
   switch(action.type) {

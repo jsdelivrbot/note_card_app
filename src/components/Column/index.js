@@ -46,6 +46,7 @@ class Column extends Component {
                 title={this.props.cards[card].title}
                 note={this.props.cards[card].note}
                 column={this.props.cards[card].column}
+                editCard={this.props.editCard}
               />
       )
     });
@@ -68,7 +69,7 @@ class Column extends Component {
           value={this.state.note}
         />
         <button onClick={this.createCard.bind(this)}className="btn btn-primary">Create Card</button>
-        <div className="input-group">{this.renderCards()}</div>
+        <div>{this.renderCards()}</div>
       </div>
     );
   }

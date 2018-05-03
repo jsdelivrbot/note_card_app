@@ -20,6 +20,7 @@ class ColumnContainer extends Component {
         cards={this.props.cards}
         createCard={this.props.createCard}
         deleteCard={this.props.deleteCard}
+        editCard={this.props.editCard}
         cardId={this.props.cardId}
       />
     );

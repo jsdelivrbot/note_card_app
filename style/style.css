@@ -1,24 +1,62 @@
+body {
+  background-color: darkblue !important;
+}
+
 #add-column-button {
   display: block;
   margin: 15px;
 }
 
+h4 {
+  color: white !important;
+}
+
+.column {
+  background-color: lightgray;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding-bottom: 15px;
+}
+
+.column input {
+  width: 100%;
+}
+
 .note-card {
+  padding: 0px 5px 0px 5px;
   margin-top: 20px;
   height: 150px;
-  width: 174px;
+  width: 100%;
   border: 1px solid black;
   overflow-y: scroll;
+  background-color: white;
 }
 
 .note-card h4 {
-  color: red;
+  color: red !important;
   text-align: center;
 }
 
+.edit {
+  height: 20px;
+}
+
 .delete {
-  margin: 5px;
+  margin-top: 5px;
   height: 20px;
   float: right;
   cursor: pointer;
+}
+
+.my-modal {
+  background-color: lightblue;
+  position: fixed;
+  height: 700px;
+  width: 600px;
+  border-radius: 5px;
+  padding: 30px;
+}
+
+.my-modal input {
+  display: block;
 }
