@@ -16,12 +16,13 @@ export default function(state = initialState, action) {
     case types.CREATE_CARD:
       return { ...state, [action.payload.cardId]: action.payload };
     case types.DELETE_CARD:
-      console.log('Card Reducer: Deleting Card');
       var newState = Object.assign({}, state);
-      console.log(newState);
-      console.log(action.payload);
       delete newState[action.payload.key];
-      console.log(newState);
+      return newState;
+    case  types.EDIT_CARD:
+      var newState = Object.assign({}, state);
+      newState[action.payload.key].title = action.payload.title;
+      newState[action.payload.key].note = action.payload.note;
       return newState;
     default:
       return state;

@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Column from '../containers/ColumnContainer';
+import EditModal from './EditModal';
 
 import { createColumn } from '../redux/columns/operations';
+import { editCard } from '../redux/cards/operations';
 
 class App extends Component {
   constructor(props) {
@@ -27,9 +29,6 @@ class App extends Component {
   }
 
   renderColumns() {
-    // console.log('RENDERING COLUMNS');
-    // console.log(this.props.columns);
-    // console.log(this.props.columns.columns);
     if(this.props.columns.columns.length === 0) {
       return <h4>Add column to start making notes</h4>
     };
@@ -45,49 +44,31 @@ class App extends Component {
   }
 
   editCard(id) {
-    console.log('PEaNUT BUTTER JelLY TIME');
-    console.log('id: ' + id);
-    console.log(typeof(id));
     if (typeof(id) === 'number') {
       this.setState({ selectedCard: id });
     }
-    console.log(this.state.selectedCard);
   }
 
   closeModal() {
-    console.log('closing');
     this.setState({ selectedCard: null})
   }
 
-  saveChanges() {
+  saveChanges(card) {
+    this.props.editCard(card);
     this.closeModal()
   }
 
   render() {
-    let modal = <h1>NOT EDITING</h1>
-    console.log('if statement');
-    console.log('selected card: ' + this.state.selectedCard);
-    console.log(this.state.selectedCard);
+    let modal;
     if (this.state.selectedCard !== null) {
       modal = (
-        <div className="my-modal">
-          <img
-            className="delete"
-            src="../style/images/delete_icon.png"
-            alt="delete.png"
-            onClick={this.closeModal}
-          />
-          <h1>Modal</h1>
-          <h3>{this.props.cards[this.state.selectedCard].title}</h3>
-          <p>{this.props.cards[this.state.selectedCard].note}</p>
-          <label>Title:</label>
-          <input type="textfield" name="title" value={this.props.cards[this.state.selectedCard].title} />
-          <br />
-          <label>Note:</label>
-          <input type="textfield" name="title" value={this.props.cards[this.state.selectedCard].note} />
-          <br />
-          <button className="btn btn-primary" onClick={this.saveChanges}>Save Changes</button>
-        </div>
+        <EditModal
+          closeModal={this.closeModal}
+          saveChanges={this.saveChanges}
+          selectedCard = {this.state.selectedCard}
+          title={this.props.cards[this.state.selectedCard].title}
+          note={this.props.cards[this.state.selectedCard].note}
+        />
       )
     }
     return (
@@ -112,7 +93,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ createColumn: createColumn }, dispatch);
+  return bindActionCreators({ createColumn, editCard }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

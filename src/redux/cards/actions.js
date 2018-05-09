@@ -15,7 +15,15 @@ const deleteCard = (data) => {
   }
 }
 
+const editCard = (data) => {
+  return {
+    type: types.EDIT_CARD,
+    payload: data
+  }
+}
+
 export default {
   createCard,
-  deleteCard
+  deleteCard,
+  editCard
 }

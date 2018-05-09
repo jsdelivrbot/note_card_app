@@ -35,9 +35,6 @@ class Column extends Component {
 
   renderCards() {
     var cards = this.props.columns.columns[this.props.columnId]
-    // console.log(this.props.cards);
-    // console.log('CARDS');
-    // console.log(cards);
     return cards.map(card => {
       return (
               <Card
